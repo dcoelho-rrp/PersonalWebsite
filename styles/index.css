@@ -21,7 +21,7 @@ body {
     margin-bottom: 20px;
 }
 
-.line {
+.inner-wrapper { /* inner wrapper */
     display: flex;
 }
 
