@@ -17,6 +17,10 @@ body {
     display: block;
 }
 
+.help {
+    margin-bottom: 20px;
+}
+
 .line {
     display: flex;
 }
