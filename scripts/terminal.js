@@ -1,9 +1,4 @@
-const response = await fetch('../database/commands.json');
-const commands = await response.json();
-const test = {
-    "help": "something",
-    "whoami": "youre someone"
-};
+import { commandMap } from "../database/commands.js";
 
 function addInputLine() {
     // This function holds the logic of adding other lines on the terminal 
@@ -27,7 +22,7 @@ function addInputLine() {
     childInput.classList.add("input"); 
     childInput.addEventListener("keydown", function(event) {
         if (event.key == "Enter") {
-            treatInput(childInput.value); // calling treatInput with the input's value as argument 
+            commandOutput(childInput.value); // calling treatInput with the input's value as argument 
             addInputLine();
             childInput.disabled = true;
         }
@@ -42,23 +37,24 @@ function addInputLine() {
     childInput.focus();
 }
 
-function treatInput(command) {
+function commandOutput(command) {
     // This function treats the input provided by the user  
 
     command = command.toLowerCase().trim();
     let outputs = document.querySelectorAll(".output");
+    const outputDiv = outputs[outputs.length - 1];
     
-    if (test.hasOwnProperty(command)) {
-        outputs[outputs.length - 1].innerHTML = `${command}`
+    if (commandMap.hasOwnProperty(command)) {
+        outputDiv.innerHTML = commandMap[command]();
     } else {
-        outputs[outputs.length - 1].innerHTML = "Command not found";
+        outputDiv.innerHTML = "Command not found";
     }
 }
 
 const initialInput = document.querySelector(".input");
 initialInput.addEventListener("keydown", function(event) {
     if (event.key == "Enter") {
-        treatInput(initialInput.value);
+        commandOutput(initialInput.value);
         addInputLine();
         initialInput.disabled = true;
     }
