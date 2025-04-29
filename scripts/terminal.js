@@ -1,32 +1,35 @@
-// To-do: fix bug ->  I can only add one like to the terminal currently and it stops there.
-
-function terminalInput() {
-    const input = document.querySelector(".input");
+function addInputLine() {
     const main = document.getElementById("main");
 
-    input.addEventListener("keydown", function(event) {
+    const wrapper = document.createElement("div");
+    wrapper.style.display = "flex";
+
+    let childDiv = document.createElement("div");
+    let childInput = document.createElement("input");
+
+    childDiv.classList.add("idk");
+    childDiv.innerHTML = ">:";
+
+    childInput.type = "text";
+    childInput.classList.add("input"); 
+    childInput.addEventListener("keydown", function(event) {
         if (event.key == "Enter") {
-            const wrapper = document.createElement("div");
-            wrapper.style.display = "flex";
-
-            let childDiv = document.createElement("div");
-            let childInput = document.createElement("input");
-
-            childDiv.classList.add("idk");
-            childDiv.innerHTML = ">:";
-
-            childInput.type = "text";
-            childInput.classList.add("input");
-
-            wrapper.appendChild(childDiv);
-            wrapper.appendChild(childInput);
-            
-            main.appendChild(wrapper);
-
-            input.blur();
-            childInput.focus();
+            addInputLine();
+            childInput.disabled = true;
         }
-    })
+    });
+
+    wrapper.appendChild(childDiv);
+    wrapper.appendChild(childInput);
+    main.appendChild(wrapper);
+
+    childInput.focus();
 }
 
-terminalInput();
+const initialInput = document.querySelector(".input");
+initialInput.addEventListener("keydown", function(event) {
+    if (event.key == "Enter") {
+        addInputLine();
+        initialInput.disabled = true;
+    }
+})
