@@ -46,6 +46,8 @@ function commandOutput(command) {
     
     if (commandMap.hasOwnProperty(command)) {
         outputDiv.innerHTML = commandMap[command]();
+    } else if (command == "") {
+        outputDiv.innerHTML = "";
     } else {
         outputDiv.innerHTML = "Command not found";
     }

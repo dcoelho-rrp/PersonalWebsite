@@ -44,3 +44,7 @@ body {
 .input:focus {
     outline: none;
 }
+
+.output {
+    margin-bottom: 20px;
+}
