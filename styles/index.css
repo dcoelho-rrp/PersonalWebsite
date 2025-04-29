@@ -14,8 +14,11 @@ body {
 }
 
 #main {
+    display: block;
+}
+
+.line {
     display: flex;
-    flex-direction: column;
 }
 
 .idk {
