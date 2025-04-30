@@ -39,6 +39,7 @@ function addInputLine() {
 
 function commandOutput(command) {
     // This function treats the input provided by the user  
+    // and outputs it to the document
 
     command = command.toLowerCase().trim();
     let outputs = document.querySelectorAll(".output");
